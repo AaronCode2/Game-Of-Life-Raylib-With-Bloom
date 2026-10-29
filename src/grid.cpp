@@ -7,8 +7,17 @@ void Grid::Draw()
     {
         for(int column = 0; column < columns; column++)
         {
-            Color color = cells[row][column] ? Color{0, 255, 0, 255} : Color{55, 55, 55, 255};
-            DrawRectangle(column * cellSize, row * cellSize, cellSize - 1, cellSize - 1, color);
+            // Color color = cells[row][column] ? Color{0, 255, 0, 255} : Color{55, 55, 55, 255};
+            if(cells[row][column]) {
+
+                Color color = {0, 0, 0, 255};
+
+                color.r = (((float) row / rows) * 255);
+                color.g = (((float) column / columns) * 255);
+                color.b = ((1.0f - ((float) (column + row) / (columns + rows))) * 255);
+
+                DrawRectangle(column * cellSize, row * cellSize, cellSize - 1, cellSize - 1, color);
+            }
         }
     }
 }

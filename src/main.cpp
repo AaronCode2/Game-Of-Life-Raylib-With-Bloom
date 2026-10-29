@@ -1,19 +1,37 @@
 #include <raylib.h>
 #include <iostream>
 #include "simulation.hpp"
+#include "renderer/renderer.hpp"
+#include "utility/assets.hpp"
 
-int main()
-{
+int main() {
+
     Color GREY = {29, 29, 29, 255};
-    const int WINDOW_WIDTH = 750;
-    const int WINDOW_HEIGHT = 750;
+    int WINDOW_WIDTH = 750;
+    int WINDOW_HEIGHT = 750;
     const int CELL_SIZE = 25;
     int FPS = 12;
 
+    RendererDebugger::loadRenderDoc();
+
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Game of Life");
+
+    MaximizeWindow();
+
+    WINDOW_HEIGHT = GetScreenHeight();
+    WINDOW_WIDTH = GetScreenWidth();
+
+    Shaders::compileShaders();
+
+    Renderer renderer;
+
+    renderer.setCurrentShader(ShaderIndex::BLOOM_FŬSI);
+
+
     SetTargetFPS(FPS);
     Simulation simulation{WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE};
-
     //Simulation Loop
     while(WindowShouldClose() == false) 
     {
@@ -25,15 +43,19 @@ int main()
             int column = mousePosition.x / CELL_SIZE;
             simulation.ToggleCell(row, column);
         }
-        if(IsKeyPressed(KEY_ENTER))
-        {
-            simulation.Start();
-            SetWindowTitle("Game of Life is running ...");
-        }
         else if(IsKeyPressed(KEY_SPACE))
         {
-            simulation.Stop();
-            SetWindowTitle("Game of Life has stopped.");
+            simulation.run != simulation.run;
+            
+            if(simulation.run) {
+
+                simulation.Start();
+                SetWindowTitle("Game of Life has started.");
+            } else {
+
+                simulation.Stop();
+                SetWindowTitle("Game of Life has stopped.");
+            }
         }
         else if(IsKeyPressed(KEY_F))
         {
@@ -59,11 +81,26 @@ int main()
 
         // 2. Updating State
         simulation.Update(); 
+        
+        renderer.beginTargetRender();
+        {
+            ClearBackground(BLACK);
+            simulation.Draw();
+        }
+        renderer.endTargetRender();
 
-        // 3. Drawing
+        renderer.applyShader();
+
         BeginDrawing();
-        ClearBackground(GREY);
-        simulation.Draw();
+        {
+            ClearBackground(GREY);
+
+            BeginBlendMode(BLEND_ADDITIVE);
+            {
+                renderer.drawResult();
+            }
+            EndBlendMode();
+        }
         EndDrawing();
     }
 

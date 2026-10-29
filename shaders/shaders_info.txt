@@ -1,0 +1,14 @@
+
+This a general guide for me since the raylib has variables for shaders (uniforms and ins)
+
+in vec2 FragTexColor -> The 2D texture cord, even stuff with no images
+in vec4 FragColor -> The vertex color passed
+
+uniform sample2D texture0 -> The texture openGL id
+
+* note don't do this: 1.0f, do this 1.0
+
+think of Fragment shader as like telling a single pixel what to do, that being repeated for ever pixel
+
+You can't send data from GPU to CPU, only CPU to GPU, so no print statements :(
+Make sure you use don't use max 16 uniforms. For compability

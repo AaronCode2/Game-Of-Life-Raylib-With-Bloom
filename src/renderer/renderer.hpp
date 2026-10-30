@@ -65,7 +65,7 @@ class Renderer {
         // Skips using mulitple buffers and just draws -> Gain Performance, when using low-end shaders
         void applyShaderToTarget();
 
-        RenderTexture2D LoadHDRRender(int width, int height);
+        RenderTexture2D LoadHDRender(int width, int height);
 
         void blendBuffers(int inputBuffer1, int inputBuffer2, int outputBuffer);
 

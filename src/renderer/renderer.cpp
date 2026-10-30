@@ -283,7 +283,9 @@ void Renderer::applyShaderToTarget() {
 
 // Doesn't require HDR monitors.
 
-RenderTexture2D Renderer::LoadHDRRender( int width, int height ) {
+RenderTexture2D Renderer::LoadHDRender( int width, int height ) {
+
+    //! Warning: You can cause a blue screen when on fullscreen. If something is inncorrect. 
 
     RenderTexture2D target = { 0 };
 
@@ -297,12 +299,12 @@ RenderTexture2D Renderer::LoadHDRRender( int width, int height ) {
             NULL,
             width,
             height,
-            PIXELFORMAT_UNCOMPRESSED_R32G32B32A32,
+            PIXELFORMAT_UNCOMPRESSED_R16G16B16A16,
             1
         );
         target.texture.width = width;
         target.texture.height = height;
-        target.texture.format = PIXELFORMAT_UNCOMPRESSED_R32G32B32A32;
+        target.texture.format = PIXELFORMAT_UNCOMPRESSED_R16G16B16A16;
         target.texture.mipmaps = 1;
 
         // Create depth renderbuffer/texture
@@ -388,7 +390,7 @@ void Renderer::initBuffers() {
 
     for(int i = 1; i < NUM_OF_RENDER_BUFFERS; i++) {
 
-        renderBuffers[i] = LoadHDRRender(bufferSize.x, bufferSize.y);
+        renderBuffers[i] = LoadHDRender(bufferSize.x, bufferSize.y);
 
         bufferSize /= 2.0f;
     }

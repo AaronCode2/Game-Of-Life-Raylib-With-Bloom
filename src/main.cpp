@@ -29,23 +29,35 @@ int main() {
 
     renderer.setCurrentShader(ShaderIndex::BLOOM_FŬSI);
 
-
     SetTargetFPS(FPS);
     Simulation simulation{WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE};
     //Simulation Loop
     while(WindowShouldClose() == false) 
     {
         // 1. Event Handling
-        if(IsMouseButtonDown(MOUSE_BUTTON_LEFT))
-        {
+
+        if(IsKeyDown(KEY_T))
+            Utils::bloomAdjust += 1.00f;
+        if(IsKeyDown(KEY_G))
+            Utils::bloomAdjust -= 1.00f;
+
+        if(IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+
             Vector2 mousePosition = GetMousePosition();
             int row = mousePosition.y / CELL_SIZE;
             int column = mousePosition.x / CELL_SIZE;
-            simulation.ToggleCell(row, column);
+            simulation.ToggleCell(row, column, 1);
         }
-        else if(IsKeyPressed(KEY_SPACE))
-        {
-            simulation.run != simulation.run;
+        if(IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
+
+            Vector2 mousePosition = GetMousePosition();
+            int row = mousePosition.y / CELL_SIZE;
+            int column = mousePosition.x / CELL_SIZE;
+            simulation.ToggleCell(row, column, 0);
+        }
+        else if(IsKeyPressed(KEY_SPACE)){
+
+            simulation.run = !simulation.run;
             
             if(simulation.run) {
 

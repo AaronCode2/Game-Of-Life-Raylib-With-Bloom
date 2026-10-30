@@ -12,17 +12,19 @@
 uniform sampler2D texture0;
 in vec2 fragTexCoord;
 
+uniform float filterRadius;
+
 out vec4 outputColor;
 
 void main() {
 
     // Up sampling
 
-    // Prvents when rendering on edge, to adjust cords
+    // Prevents when rendering on edge, to adjust cords
 
     vec2 texelSize = 1.0 / vec2(textureSize(texture0, 0));
 
-    const float filterRadius = 1.0;
+
 
 	float x = texelSize.x * filterRadius;
 	float y = texelSize.y * filterRadius;

@@ -15,7 +15,7 @@ class Grid
         int GetColumns() {return columns;}
         void FillRandom();
         void Clear();
-        void ToggleCell(int row, int column);
+        void ToggleCell(int row, int column, int state);
     private:
         int rows;
         int columns;

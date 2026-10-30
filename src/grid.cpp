@@ -71,10 +71,10 @@ void Grid::Clear()
     }
 }
 
-void Grid::ToggleCell(int row, int column)
+void Grid::ToggleCell(int row, int column, int state)
 {
     if(IsWithinBounds(row, column))
     {
-        cells[row][column] = !cells[row][column];
+        cells[row][column] = state;
     }
 }

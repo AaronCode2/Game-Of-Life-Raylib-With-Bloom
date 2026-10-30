@@ -12,10 +12,14 @@ The project aims to provide an interactive experience, allowing users to visuall
 - **Random Initialization**: Generate a random starting point to explore unexpected patterns and behaviors.
 - **Infinite Grid**: Thanks to edge wrapping, experience an unbounded canvas for your cellular automata, allowing patterns to move seamlessly across the grid boundaries.
 
+# Showcase
+
+![Shows image of bloom](concepts/image.png)
+
 # Video Tutorial
 
 <p align="center">
-  <img src="preview.jpg" alt="" width="960">
+  <img src="concepts/preview.jpg" alt="" width="960">
 </p>
 
 <p align="center">

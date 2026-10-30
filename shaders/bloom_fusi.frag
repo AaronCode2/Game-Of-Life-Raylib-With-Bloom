@@ -10,8 +10,8 @@ uniform vec4 colDiffuse;
 out vec4 finalColor;
 
 
-void main()
-{
+void main() {
+    
     const float exposure = 0.5;
     float gamma = 2.2;
     vec3 hdrColor = texture(texture0, fragTexCoord).rgb;

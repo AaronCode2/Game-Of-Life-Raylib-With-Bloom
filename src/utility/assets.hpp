@@ -19,7 +19,7 @@ enum class ShaderIndex {
 enum class UniformIndex {
 
     DOWN_SAMPLE_TEXTURE_SIZE = 0,
-    UP_SAMPLE_TEXTURE_SIZE,
+    UP_SAMPLE_FILTRE_RADIUS,
 
     FOG_WINDOW_SIZE,
     FOG_POS,

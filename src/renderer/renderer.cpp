@@ -508,18 +508,13 @@ void Renderer::upSampleBuffer(int inputBuffer, int outputBuffer) {
 
     // We use filter radius instead of bufferSize
 
-    Vector2 bufferSize = {
-        (float)  renderBuffers[outputBuffer].texture.width,
-        (float) renderBuffers[outputBuffer].texture.height
-    };
+    Shaders::uniforms[UniformIndex::UP_SAMPLE_FILTRE_RADIUS].data = &Utils::bloomAdjust;
 
-    Shaders::uniforms[UniformIndex::UP_SAMPLE_TEXTURE_SIZE].data = &bufferSize;
-
-    SetShaderValueV(
+    SetShaderValue(
         Shaders::shader[ShaderIndex::UP_SAMPLING],
-        Shaders::uniforms[UniformIndex::UP_SAMPLE_TEXTURE_SIZE].loc,
-        Shaders::uniforms[UniformIndex::UP_SAMPLE_TEXTURE_SIZE].data,
-        SHADER_UNIFORM_VEC2, 1
+        Shaders::uniforms[UniformIndex::UP_SAMPLE_FILTRE_RADIUS].loc,
+        Shaders::uniforms[UniformIndex::UP_SAMPLE_FILTRE_RADIUS].data,
+        SHADER_UNIFORM_FLOAT
     );                                                          
 
     BeginTextureMode(renderBuffers[outputBuffer]);

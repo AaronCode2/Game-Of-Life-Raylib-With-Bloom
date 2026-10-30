@@ -77,24 +77,20 @@ void Simulation::Update()
 
 void Simulation::ClearGrid()
 {
-    if(!IsRunning())
-    {
-        grid.Clear();
-    }
+    grid.Clear();
+
 }
 
 void Simulation::CreateRandomState()
 {
-    if(!IsRunning())
-    {
-        grid.FillRandom();
-    }
+
+    grid.FillRandom();
+
 }
 
-void Simulation::ToggleCell(int row, int column)
+void Simulation::ToggleCell(int row, int column, int state)
 {
-    if(!IsRunning())
-    {
-        grid.ToggleCell(row, column);
-    }
+
+    grid.ToggleCell(row, column, state);
+
 }

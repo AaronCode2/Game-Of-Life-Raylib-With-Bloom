@@ -119,6 +119,8 @@ namespace Utils {
     extern bool hackerMode;
 
     extern int shaderIndex;
+
+    extern float bloomAdjust;
 } 
 
 

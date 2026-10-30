@@ -6,7 +6,7 @@ float Utils::deltaTimeIt = 0.0f;
 bool Utils::hackerMode = false;
 int Utils::shaderIndex = 3;
 
-
+float Utils::bloomAdjust = 1.0f;
 
 Font Utils::font;
 int Utils::fontSize;
